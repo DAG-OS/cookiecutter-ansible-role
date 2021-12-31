@@ -1,0 +1,26 @@
+= Changelog
+
+:base: https://github.com/DAG-OS/cookiecutter-ansible-role
+:unreleased: {base}/compare/v1.0.0...HEAD
+:v1_0_0: {base}/releases/tag/v1.0.0
+
+All notable changes to this project will be documented in this file.
+
+The format is based on https://keepachangelog.com/en/1.1.0/[Keep a Changelog],
+and this project adheres to https://semver.org/spec/v2.0.0.html[Semantic Versioning].
+
+== {unreleased}[Unreleased]
+
+This section tracks upcoming changes that are not yet released.
+
+== {v1_0_0}[v1.0.0]
+
+=== Added
+
+* A https://github.com/cookiecutter/cookiecutter[Cookiecutter] template for DAGOS Ansible roles, which includes:
+    * MIT license in initial commit.
+    * https://pre-commit.com/[pre-commit] hooks.
+    * Role testing via https://molecule.readthedocs.io/en/latest/[Molecule].
+    * A changelog.
+    * A README.
+    * Github workflows for testing and releasing the role
