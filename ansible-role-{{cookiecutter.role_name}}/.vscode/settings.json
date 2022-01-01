@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "**/.github/**/*.yml": "yaml",
+        "**/*.yml": "ansible",
+        "**/molecule*.yml": "yaml",
+    },
+}
