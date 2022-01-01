@@ -2,6 +2,7 @@
     "files.associations": {
         "**/.github/**/*.yml": "yaml",
         "**/*.yml": "ansible",
+        "**/meta/*.yml": "yaml",
         "**/molecule*.yml": "yaml",
     },
 }
