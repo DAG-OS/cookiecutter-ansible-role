@@ -1,10 +1,13 @@
 import subprocess
+import io
 
+#######################################
 # Create an initial commit using emojis from https://gitmoji.dev/
 subprocess.run(["git", "init"])
 subprocess.run(["git", "add", "LICENSE"])
 subprocess.run(["git", "commit", "-m", "🎉 Initial commit"])
 
+#######################################
 # Initialize Ansible role via Molecule.
 ansible_role = "{{ cookiecutter.role_namespace }}.{{ cookiecutter.role_name }}"
 subprocess.run(
@@ -30,5 +33,18 @@ subprocess.run(f"cp -r {ansible_role}/* {ansible_role}/.[!.]* .", shell=True)
 subprocess.run(["rm", "-rf", ansible_role])
 subprocess.run(["rm", ".travis.yml"])
 
+#######################################
+# Modify Ansible role meta information
+sed = io.StringIO()
+sed.write("sed -i ")
+sed.write("-e 's/author:.*/author: {{ cookiecutter.full_name }}/' ")
+# Delete redundant lines between company and license
+sed.write("-e '/company: /,/license: /{//!d}' ")
+sed.write("-e '/company: /d' ")
+sed.write("-e 's/license:.*/license: MIT/' ")
+sed.write("meta/main.yml")
+subprocess.run(sed.getvalue(), shell=True, check=True)
+
+#######################################
 # Install pre-commit hooks
 subprocess.run(["pre-commit", "install"])
