@@ -18,7 +18,13 @@ subprocess.run(
     ]
 )
 subprocess.run(
-    ["rm", f"{ansible_role}/README.md", f"{ansible_role}/molecule/default/molecule.yml"]
+    [
+        "rm",
+        "-rf",
+        f"{ansible_role}/README.md",
+        f"{ansible_role}/molecule/default/molecule.yml",
+        f"{ansible_role}/tests",
+    ]
 )
 subprocess.run(f"cp -r {ansible_role}/* {ansible_role}/.[!.]* .", shell=True)
 subprocess.run(["rm", "-rf", ansible_role])
