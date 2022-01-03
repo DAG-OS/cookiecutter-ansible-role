@@ -6,7 +6,8 @@
 :v1_0_2: {base}/compare/v1.0.1..v1.0.2
 :v1_0_3: {base}/compare/v1.0.2..v1.0.3
 :v1_1_0: {base}/compare/v1.0.3..v1.1.0
-:unreleased: {base}/compare/v1.1.0..HEAD
+:v1_1_1: {base}/compare/v1.1.0..v1.1.1
+:unreleased: {base}/compare/v1.1.1..HEAD
 
 All notable changes to this project will be documented in this file.
 
@@ -17,11 +18,17 @@ and this project adheres to https://semver.org/spec/v2.0.0.html[Semantic Version
 
 This section tracks upcoming changes that are not yet released.
 
+== {v1_1_1}[v1.1.1]
+
+=== Fixed
+
+* Use role name as Molecule instance name.
+
 == {v1_1_0}[v1.1.0]
 
 === Added
 
-* Additional pre-commit hooks
+* Additional pre-commit hooks.
 ** Check for merge conflicts in files.
 ** Detect private keys.
 

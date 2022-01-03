@@ -4,7 +4,7 @@ dependency:
 driver:
   name: docker
 platforms:
-  - name: tinytex-instance
+  - name: {{ cookiecutter.role_name }}-instance
     image: "docker.io/geerlingguy/docker-${MOLECULE_DISTRO:-centos8}-ansible:latest"
     command: ""
     volumes:
