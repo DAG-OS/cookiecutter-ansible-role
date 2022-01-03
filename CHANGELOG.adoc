@@ -7,7 +7,8 @@
 :v1_0_3: {base}/compare/v1.0.2..v1.0.3
 :v1_1_0: {base}/compare/v1.0.3..v1.1.0
 :v1_1_1: {base}/compare/v1.1.0..v1.1.1
-:unreleased: {base}/compare/v1.1.1..HEAD
+:v1_2_0: {base}/compare/v1.1.1..v1.2.0
+:unreleased: {base}/compare/v1.2.0..HEAD
 
 All notable changes to this project will be documented in this file.
 
@@ -18,9 +19,12 @@ and this project adheres to https://semver.org/spec/v2.0.0.html[Semantic Version
 
 This section tracks upcoming changes that are not yet released.
 
+== {v1_2_0}[v1.2.0]
+
 === Added
 
 * Role description via cookiecutter.
+* Verify dependencies are installed before generation.
 
 === Changed
 
