@@ -1,4 +1,4 @@
-# {{ cookiecutter.role_name }}
+# Ansible Role: {{ cookiecutter.role_name }}
 
 <!-- TODO: Add description to cookiecutter template -->
 A brief description of the role goes here.
