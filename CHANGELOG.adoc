@@ -19,6 +19,10 @@ and this project adheres to https://semver.org/spec/v2.0.0.html[Semantic Version
 
 This section tracks upcoming changes that are not yet released.
 
+=== Added
+
+* Contribution guidelines.
+
 == {v1_2_0}[v1.2.0]
 
 === Added
