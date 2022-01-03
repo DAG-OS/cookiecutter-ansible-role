@@ -25,6 +25,7 @@ This section tracks upcoming changes that are not yet released.
 === Changed
 
 * README title now starts with `Ansible Role:`.
+* Use Molecule min. Ansible version for `min_ansible_version` key in `meta/main.yml`.
 
 == {v1_1_1}[v1.1.1]
 

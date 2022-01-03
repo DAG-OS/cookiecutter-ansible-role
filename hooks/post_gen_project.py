@@ -39,6 +39,8 @@ sed = io.StringIO()
 sed.write("sed -i ")
 sed.write("-e 's/author:.*/author: {{ cookiecutter.full_name }}/' ")
 sed.write("-e 's/description:.*/description: {{ cookiecutter.role_description }}/' ")
+# Follow molecule min ansible version for now
+sed.write("-e 's/min_ansible_version:.*/min_ansible_version: 2.8/' ")
 # Delete redundant lines between company and license
 sed.write("-e '/company: /,/license: /{//!d}' ")
 sed.write("-e '/company: /d' ")
