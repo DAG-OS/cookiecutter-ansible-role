@@ -38,6 +38,7 @@ subprocess.run(["rm", ".travis.yml"])
 sed = io.StringIO()
 sed.write("sed -i ")
 sed.write("-e 's/author:.*/author: {{ cookiecutter.full_name }}/' ")
+sed.write("-e 's/description:.*/description: {{ cookiecutter.role_description }}/' ")
 # Delete redundant lines between company and license
 sed.write("-e '/company: /,/license: /{//!d}' ")
 sed.write("-e '/company: /d' ")

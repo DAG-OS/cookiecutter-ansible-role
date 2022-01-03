@@ -18,6 +18,10 @@ and this project adheres to https://semver.org/spec/v2.0.0.html[Semantic Version
 
 This section tracks upcoming changes that are not yet released.
 
+=== Added
+
+* Role description via cookiecutter.
+
 === Changed
 
 * README title now starts with `Ansible Role:`.
