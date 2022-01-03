@@ -22,6 +22,7 @@ This section tracks upcoming changes that are not yet released.
 === Added
 
 * Contribution guidelines.
+* GitHub issue templates.
 
 == {v1_2_0}[v1.2.0]
 
