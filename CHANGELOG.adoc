@@ -8,7 +8,8 @@
 :v1_1_0: {base}/compare/v1.0.3..v1.1.0
 :v1_1_1: {base}/compare/v1.1.0..v1.1.1
 :v1_2_0: {base}/compare/v1.1.1..v1.2.0
-:unreleased: {base}/compare/v1.2.0..HEAD
+:v1_3_0: {base}/compare/v1.2.0..v1.3.0
+:unreleased: {base}/compare/v1.3.0..HEAD
 
 All notable changes to this project will be documented in this file.
 
@@ -19,10 +20,13 @@ and this project adheres to https://semver.org/spec/v2.0.0.html[Semantic Version
 
 This section tracks upcoming changes that are not yet released.
 
+== {v1_3_0}[v1.3.0]
+
 === Added
 
 * Contribution guidelines.
 * GitHub issue templates.
+* GitHub pull request template.
 
 == {v1_2_0}[v1.2.0]
 
