@@ -6,9 +6,34 @@ on:
     branches: [ trunk ]
   schedule:
     - cron: "0 7 * * 2"
-  workflow_dispatch:
 
 jobs:
+
+  docs:
+    name: Trigger pages generation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the codebase.
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+      - name: Check if any documentation related files changed.
+        id: changed-documentation-files
+        uses: tj-actions/changed-files@v12.2
+        with:
+          files: |
+            ^docs/
+            defaults/main.yml
+            molecule/default/converge.yml
+      - name: Trigger DAG-OS pages workflow
+        if: steps.changed-documentation-files.outputs.any_changed == 'true'
+        run: |
+          curl \
+            -X POST \
+            -u "MLNW:${{ secrets.GIT_HUB_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/DAG-OS/pages/actions/workflows/publish.yml/dispatches \
+            --data '{"ref": "trunk" }'
 
   molecule:
     name: Molecule
