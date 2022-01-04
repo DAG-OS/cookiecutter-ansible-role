@@ -1,6 +1,6 @@
 # cookiecutter-ansible-role
 
-This repository provides a simple [Cookiecutter](https://github.com/cookiecutter/cookiecutter) template for bootstrapping DAGOS Ansible roles.
+This repository provides a simple [Cookiecutter](https://github.com/cookiecutter/cookiecutter) template for bootstrapping DAG-OS Ansible roles.
 
 ## Dependencies
 

@@ -21,6 +21,10 @@ and this project adheres to https://semver.org/spec/v2.0.0.html[Semantic Version
 
 This section tracks upcoming changes that are not yet released.
 
+=== Fixed
+
+* Spelling of DAG-OS.
+
 == {v1_4_0}[v1.4.0]
 
 === Added
@@ -112,7 +116,7 @@ This section tracks upcoming changes that are not yet released.
 
 === Added
 
-* A https://github.com/cookiecutter/cookiecutter[Cookiecutter] template for DAGOS Ansible roles, which includes:
+* A https://github.com/cookiecutter/cookiecutter[Cookiecutter] template for DAG-OS Ansible roles, which includes:
 ** MIT license in initial commit.
 ** https://pre-commit.com/[pre-commit] hooks.
 ** Role testing via https://molecule.readthedocs.io/en/latest/[Molecule].
