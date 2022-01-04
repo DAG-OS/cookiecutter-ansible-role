@@ -7,8 +7,6 @@
   "molecule_driver": "podman",
   "_copy_without_render": [
       ".github/workflows/ci.yml",
-      ".github/workflows/release.yml",
-      "docs/antora/modules/ROOT/examples/converge.yml",
-      "docs/antora/modules/ROOT/examples/defaults-main.yml"
+      ".github/workflows/release.yml"
   ]
 }
