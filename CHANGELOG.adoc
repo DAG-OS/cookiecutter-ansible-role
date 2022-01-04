@@ -12,7 +12,8 @@
 :v1_4_0: {base}/compare/v1.3.0..v1.4.0
 :v1_4_1: {base}/compare/v1.4.0..v1.4.1
 :v1_4_2: {base}/compare/v1.4.1..v1.4.2
-:unreleased: {base}/compare/v1.4.2..HEAD
+:v1_4_3: {base}/compare/v1.4.2..v1.4.3
+:unreleased: {base}/compare/v1.4.3..HEAD
 
 All notable changes to this project will be documented in this file.
 
@@ -22,6 +23,12 @@ and this project adheres to https://semver.org/spec/v2.0.0.html[Semantic Version
 == {unreleased}[Unreleased]
 
 This section tracks upcoming changes that are not yet released.
+
+== {v1_4_3}[v1.4.3]
+
+=== Fixed
+
+* Removed redundant debug statements from `post_gen` hooks.
 
 == {v1_4_2}[v1.4.2]
 

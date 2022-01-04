@@ -59,8 +59,6 @@ def create_symbolic_link(link_file, to):
     relative_path = os.path.relpath(to, link_file)
     # HACK: For some reason the relative path is off by one
     relative_path = relative_path[3:]
-    print(relative_path)
-    print(link_file)
     os.symlink(relative_path, link_file)
 
 
