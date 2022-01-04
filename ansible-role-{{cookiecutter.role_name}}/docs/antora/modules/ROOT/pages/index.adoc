@@ -1,0 +1,39 @@
+# Ansible role: {{ cookiecutter.role }}
+
+{{ cookiecutter.role_description }}
+
+## Requirements
+
+None.
+
+## Role variables
+
+The following variables are overridable by users to configure this role:
+
+[source,yaml]
+.https://github.com/DAG-OS/ansible-role-{{ cookiecutter.role_name }}/blob/trunk/defaults/main.yml[defaults/main.yml]
+----
+include::example$defaults-main.yml[]
+----
+
+## Dependencies
+
+None.
+
+## Example playbook
+
+The following playbook is tested regularly as part of the defined CI pipeline:
+
+[source,yaml]
+.https://github.com/DAG-OS/ansible-role-{{ cookiecutter.role_name }}/blob/trunk/molecule/default/converge.yml[molecule/default/converge.yml]
+----
+include::example$converge.yml[]
+----
+
+## License
+
+MIT
+
+## Author information
+
+This role was created in {% now 'local', '%Y' %} by {{ cookiecutter.full_name }}.

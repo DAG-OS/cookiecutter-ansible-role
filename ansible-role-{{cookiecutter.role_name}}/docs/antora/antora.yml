@@ -1,0 +1,4 @@
+---
+title: "Ansible role: {{ cookiecutter.role }}"
+name: {{ cookiecutter.role }}
+version: trunk

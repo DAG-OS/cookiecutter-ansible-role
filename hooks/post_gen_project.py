@@ -1,5 +1,6 @@
-import subprocess
 import io
+import os
+import subprocess
 
 #######################################
 # Create an initial commit using emojis from https://gitmoji.dev/
@@ -9,13 +10,12 @@ subprocess.run(["git", "commit", "-m", "🎉 Initial commit"])
 
 #######################################
 # Initialize Ansible role via Molecule.
-ansible_role = "{{ cookiecutter.role_namespace }}.{{ cookiecutter.role_name }}"
 subprocess.run(
     [
         "molecule",
         "init",
         "role",
-        ansible_role,
+        "{{ cookiecutter.role }}",
         "--driver-name",
         "{{ cookiecutter.molecule_driver }}",
     ]
@@ -24,13 +24,15 @@ subprocess.run(
     [
         "rm",
         "-rf",
-        f"{ansible_role}/README.md",
-        f"{ansible_role}/molecule/default/molecule.yml",
-        f"{ansible_role}/tests",
+        "{{ cookiecutter.role }}/README.md",
+        "{{ cookiecutter.role }}/molecule/default/molecule.yml",
+        "{{ cookiecutter.role }}/tests",
     ]
 )
-subprocess.run(f"cp -r {ansible_role}/* {ansible_role}/.[!.]* .", shell=True)
-subprocess.run(["rm", "-rf", ansible_role])
+subprocess.run(
+    "cp -r {{ cookiecutter.role }}/* {{ cookiecutter.role }}/.[!.]* .", shell=True
+)
+subprocess.run(["rm", "-rf", "{{ cookiecutter.role }}"])
 subprocess.run(["rm", ".travis.yml"])
 
 #######################################
@@ -47,6 +49,29 @@ sed.write("-e '/company: /d' ")
 sed.write("-e 's/license:.*/license: MIT/' ")
 sed.write("meta/main.yml")
 subprocess.run(sed.getvalue(), shell=True, check=True)
+
+#######################################
+# Create symbolic links used in Antora documentation
+#
+# As of now this cannot be done natively with cookiecutter.
+# See: https://github.com/cookiecutter/cookiecutter/pull/934
+def create_symbolic_link(link_file, to):
+    relative_path = os.path.relpath(to, link_file)
+    # HACK: For some reason the relative path is off by one
+    relative_path = relative_path[3:]
+    print(relative_path)
+    print(link_file)
+    os.symlink(relative_path, link_file)
+
+
+create_symbolic_link(
+    "docs/antora/modules/ROOT/examples/converge.yml",
+    "molecule/default/converge.yml",
+)
+create_symbolic_link(
+    "docs/antora/modules/ROOT/examples/defaults-main.yml",
+    "defaults/main.yml",
+)
 
 #######################################
 # Install pre-commit hooks
