@@ -2,6 +2,31 @@ import io
 import os
 import subprocess
 
+
+def create_symbolic_link(to, link_file):
+    """
+    Create a symbolic link to a file relative to provided link_file.
+    As of now this cannot be done natively with cookiecutter.
+    See: https://github.com/cookiecutter/cookiecutter/pull/934
+    """
+    relative_path = os.path.relpath(to, link_file)
+    # HACK: For some reason the relative path is off by one
+    relative_path = relative_path[3:]
+    os.symlink(relative_path, link_file)
+
+
+def modify_with_sed(file, patterns):
+    """
+    Modify provided file with provided sed patterns.
+    """
+    sed = io.StringIO()
+    sed.write("sed -i ")
+    for pattern in patterns:
+        sed.write(f"-e '{pattern}' ")
+    sed.write(file)
+    subprocess.run(sed.getvalue(), shell=True, check=True)
+
+
 #######################################
 # Create an initial commit using emojis from https://gitmoji.dev/
 subprocess.run(["git", "init"])
@@ -37,31 +62,22 @@ subprocess.run(["rm", ".travis.yml"])
 
 #######################################
 # Modify Ansible role meta information
-sed = io.StringIO()
-sed.write("sed -i ")
-sed.write("-e 's/author:.*/author: {{ cookiecutter.full_name }}/' ")
-sed.write("-e 's/description:.*/description: {{ cookiecutter.role_description }}/' ")
-# Follow molecule min ansible version for now
-sed.write("-e 's/min_ansible_version:.*/min_ansible_version: 2.8/' ")
-# Delete redundant lines between company and license
-sed.write("-e '/company: /,/license: /{//!d}' ")
-sed.write("-e '/company: /d' ")
-sed.write("-e 's/license:.*/license: MIT/' ")
-sed.write("meta/main.yml")
-subprocess.run(sed.getvalue(), shell=True, check=True)
+modify_with_sed(
+    "meta/main.yml",
+    patterns=[
+        "s/author:.*/author: {{ cookiecutter.full_name }}/",
+        "s/description:.*/description: {{ cookiecutter.role_description }}/",
+        # Follow molecule min ansible version for now
+        "s/min_ansible_version:.*/min_ansible_version: 2.8/",
+        # Delete redundant lines between company and license
+        "/company: /,/license: /{//!d}",
+        "/company: /d",
+        "s/license:.*/license: MIT/",
+    ],
+)
 
 #######################################
 # Create symbolic links used in Antora documentation
-#
-# As of now this cannot be done natively with cookiecutter.
-# See: https://github.com/cookiecutter/cookiecutter/pull/934
-def create_symbolic_link(to, link_file):
-    relative_path = os.path.relpath(to, link_file)
-    # HACK: For some reason the relative path is off by one
-    relative_path = relative_path[3:]
-    os.symlink(relative_path, link_file)
-
-
 module_dir = "docs/antora/modules/ROOT"
 example_dir = f"{module_dir}/examples"
 pages_dir = f"{module_dir}/pages"
@@ -73,10 +89,7 @@ create_symbolic_link(
     "defaults/main.yml",
     f"{example_dir}/defaults-main.yml",
 )
-create_symbolic_link(
-    "CHANGELOG.adoc",
-    f"{pages_dir}/CHANGELOG.adoc"
-)
+create_symbolic_link("CHANGELOG.adoc", f"{pages_dir}/CHANGELOG.adoc")
 
 #######################################
 # Install pre-commit hooks
