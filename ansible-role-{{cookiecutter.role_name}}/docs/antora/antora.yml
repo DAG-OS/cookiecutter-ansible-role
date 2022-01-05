@@ -2,3 +2,5 @@
 title: "Ansible role: {{ cookiecutter.role }}"
 name: {{ cookiecutter.role }}
 version: trunk
+nav:
+  - modules/ROOT/nav.adoc
