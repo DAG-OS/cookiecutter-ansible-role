@@ -75,6 +75,18 @@ modify_with_sed(
         "s/license:.*/license: MIT/",
     ],
 )
+#######################################
+# Modify CHANGELOG
+initial_commit_id = subprocess.run(
+    "git log --oneline --reverse | head -n 1 | awk '{ print $1 }'",
+    shell=True,
+    check=True,
+    capture_output=True,
+).stdout.strip().decode("utf-8")
+modify_with_sed(
+    "CHANGELOG.adoc",
+    patterns=[f"s/#initial_commit_id#/{initial_commit_id}/g"],
+)
 
 #######################################
 # Create symbolic links used in Antora documentation
