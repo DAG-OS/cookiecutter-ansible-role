@@ -3,7 +3,9 @@ name: CI
 
 on:
   push:
-    branches: [ trunk ]
+    branches:
+      - trunk
+      - 'v*'
   schedule:
     - cron: "0 7 * * 2"
 
@@ -57,22 +59,31 @@ jobs:
           files: |
             ^(defaults|files|handlers|meta|molecule|tasks|templates|vars)/
 
+      - name: Check if test should run
+        id: check
+        # Run either on schedules or when files changed
+        run: |
+          ([[ '${{ github.event_name }}' == 'schedule' ]] \
+          || ${{ steps.changed-ansible-files.outputs.any_changed }}) \
+          && echo "::set-output name=should_run::true" \
+          || echo "::set-output name=should_run::false"
+
       - name: Set up Python 3.
-        if: steps.changed-ansible-files.outputs.any_changed == 'true'
+        if: steps.check.outputs.should_run == 'true'
         uses: actions/setup-python@v2
         with:
           python-version: '3.x'
 
       - name: Install test dependencies.
-        if: steps.changed-ansible-files.outputs.any_changed == 'true'
+        if: steps.check.outputs.should_run == 'true'
         run: pip3 install ansible molecule[docker] docker
 
       - name: Use CI specific Molecule configuration.
-        if: steps.changed-ansible-files.outputs.any_changed == 'true'
+        if: steps.check.outputs.should_run == 'true'
         run: mv molecule/default/molecule-ci.yml molecule/default/molecule.yml
 
       - name: Run Molecule tests.
-        if: steps.changed-ansible-files.outputs.any_changed == 'true'
+        if: steps.check.outputs.should_run == 'true'
         run: molecule test
         env:
           PY_COLORS: '1'
