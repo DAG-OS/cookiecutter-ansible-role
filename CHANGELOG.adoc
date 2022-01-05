@@ -18,6 +18,7 @@
 :v1_6_0: {base}/compare/v1.5.1\...v1.6.0[v1.6.0]
 :v1_6_1: {base}/compare/v1.6.0\...v1.6.1[v1.6.1]
 :v1_7_0: {base}/compare/v1.6.1\...v1.7.0[v1.7.0]
+:v1_8_0: {base}/compare/v1.7.0\...v1.8.0[v1.8.0]
 :unreleased: {base}/compare/v1.7.0\...HEAD[Unreleased]
 
 All notable changes to this project will be documented in this file.
@@ -28,6 +29,12 @@ and this project adheres to https://semver.org/spec/v2.0.0.html[Semantic Version
 == {unreleased}
 
 This section tracks upcoming changes that are not yet released.
+
+== {v1_8_0}
+
+=== Fixed
+
+* Moved pull request template to correct location.
 
 == {v1_7_0}
 
