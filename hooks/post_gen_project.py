@@ -55,20 +55,27 @@ subprocess.run(sed.getvalue(), shell=True, check=True)
 #
 # As of now this cannot be done natively with cookiecutter.
 # See: https://github.com/cookiecutter/cookiecutter/pull/934
-def create_symbolic_link(link_file, to):
+def create_symbolic_link(to, link_file):
     relative_path = os.path.relpath(to, link_file)
     # HACK: For some reason the relative path is off by one
     relative_path = relative_path[3:]
     os.symlink(relative_path, link_file)
 
 
+module_dir = "docs/antora/modules/ROOT"
+example_dir = f"{module_dir}/examples"
+pages_dir = f"{module_dir}/pages"
 create_symbolic_link(
-    "docs/antora/modules/ROOT/examples/converge.yml",
     "molecule/default/converge.yml",
+    f"{example_dir}/converge.yml",
 )
 create_symbolic_link(
-    "docs/antora/modules/ROOT/examples/defaults-main.yml",
     "defaults/main.yml",
+    f"{example_dir}/defaults-main.yml",
+)
+create_symbolic_link(
+    "CHANGELOG.adoc",
+    f"{pages_dir}/CHANGELOG.adoc"
 )
 
 #######################################

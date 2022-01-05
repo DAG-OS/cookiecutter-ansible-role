@@ -24,6 +24,11 @@ and this project adheres to https://semver.org/spec/v2.0.0.html[Semantic Version
 
 This section tracks upcoming changes that are not yet released.
 
+=== Added
+
+* Changelog page to documentation.
+* Navigation to documentation.
+
 == {v1_4_3}[v1.4.3]
 
 === Fixed
