@@ -33,6 +33,7 @@ This section tracks upcoming changes that are not yet released.
 === Fixed 
 
 * Github comparison links rendering correctly.
+* Ansible minimum version identifier.
 
 == {v1_5_1}
 

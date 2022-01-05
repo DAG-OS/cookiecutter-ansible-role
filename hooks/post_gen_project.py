@@ -67,8 +67,7 @@ modify_with_sed(
     patterns=[
         "s/author:.*/author: {{ cookiecutter.full_name }}/",
         "s/description:.*/description: {{ cookiecutter.role_description }}/",
-        # Follow molecule min ansible version for now
-        "s/min_ansible_version:.*/min_ansible_version: 2.8/",
+        "s/min_ansible_version:.*/min_ansible_version: \"2.10\"/",
         # Delete redundant lines between company and license
         "/company: /,/license: /{//!d}",
         "/company: /d",
